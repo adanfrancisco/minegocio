@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
+
+import { StyleSheet, SafeAreaView } from "react-native";
+import StackNavigator from "./src/routes/StackNavigator";
+import LoginProvider from "./src/context/LoginProvider";
+import NetInfo from '@react-native-community/netinfo';
+import { Alert } from "react-native";
 
 export default function App() {
+  NetInfo.fetch().then(state => {
+    console.log('Connection type', state.type);
+    console.log('Is connected?', state.isConnected);
+    if(!state.isConnected)Alert.alert('Debes conectarte a una red para usar la aplicación');
+    return;
+  });
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <LoginProvider>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </LoginProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
