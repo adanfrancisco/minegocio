@@ -1,4 +1,4 @@
-import  React,{useContext} from 'react';
+import  React,{useContext, useEffect} from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -6,10 +6,28 @@ const Draw = createNativeStackNavigator();
 
 import Login from '../screens/Login';
 import Home from '../screens/Home';
+
 import { useLogin } from '../context/LoginProvider';
 
 
+
 const StackNavigator = () => {
+
+
+  
+
+
+
+  useEffect(() => {
+    
+    // if (localStorage.getItem("token")) {
+    //   var miStorage =localStorage.getItem("token");
+    //   console.log('miStorage:',miStorage);
+  
+    //   // var {dni} = JSON.parse(texto);
+    //   // dispatch(getUsersAction(dni));
+    // }
+  }, []);
 
 return (
       <Stack.Navigator>
