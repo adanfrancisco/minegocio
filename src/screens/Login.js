@@ -5,16 +5,13 @@ import { SafeAreaView,Alert,TouchableOpacity,TextInput, View, Text } from "react
 import axios from "axios";
 
 import LoginProvider, { useLogin } from "../context/LoginProvider";
+import * as Vars   from '../constants/pointers';
 
 import { styles } from "../Styles";
 
 const TOKEN_USER='';
 
 export default function Login({ navigation }) {
-
-  
-  
-
 
 
   const [_user, _setUser] = useState(null);
@@ -28,7 +25,7 @@ export default function Login({ navigation }) {
 
   const getToken = async () => {
     await axios
-      .post("http://siscod1.ddns.net:3005/api/login", {
+      .post(Vars.base+ Vars.Login , {
         username: _user,
         password: _password,
         key: _key,
@@ -42,6 +39,8 @@ export default function Login({ navigation }) {
                           TOKEN: ${res.data.token}`);
                           // storeData(res.data.token);
 //TODO: guardar en Local Sqlite
+
+
         setIsLoggedIn(true);
         setProfile({
           user: _user,
